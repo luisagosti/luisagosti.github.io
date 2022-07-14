@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--================= TAB CSS =================-->
+    <link rel="stylesheet" href="../assets/css/styleTabInterface.css" type="text/css">
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== ALPHATAB JS ===============-->
+    <script src="https://cdn.jsdelivr.net/npm/@coderline/alphatab@latest/dist/alphaTab.js"></script>
+    <script src="https://kit.fontawesome.com/b43f0e512e.js"></script>
+
+    <!--=============== TUNER CSS =================-->
+    <link rel="stylesheet" href="../assets/css/styleTuner.css" type="text/css">
+
+    <!--=============== METRONOME CSS =============-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../assets/css/styleMetronome.css" type="text/css">
+
+    <!--=============== MATERIAL CSS ===============-->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+
+    <!--=============== SWEETALERT2 ================-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--=============== PAGE CSS ===============-->
+    <link rel="stylesheet" href="../assets/css/styleMainPage.css">
+
+    <title>EasyTab - Musica para todos</title>
+    <link rel="icon" type="image/x-icon" href="..\assets\img\favicon.ico">
+</head>
+
+<body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <i class="ri-music-line nav__logo-icon"></i> EasyTab
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Pesquisa</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#items" class="nav__link">Pauta</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#tuner" class="nav__link">Afinador</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#specifics" class="nav__link">Sobre</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#metronome" class="nav__link">Metrónomo</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link" id="menuLogin">Login</a>
+                    </li>
+                </ul>
+
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <div class="nav__btns">
+                <!-- Theme change button -->
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home" id="home">
+            <div class="home__container container grid">
+
+
+                <div class="home__data">
+                    <h1 class="home__title">
+                        Então, <br> o que vamos aprender hoje?
+                    </h1>
+                    <input type="text" name="getMusic" id="searchBar" autocomplete="on" list="musicList"
+                        class="Input-text" placeholder="Clica aqui para começares a tua pesquisa.">
+                    <div id="searchLine" class="searchLine">
+                        <div id="ri-search-line" class="ri-search-line"></div>
+                    </div>
+                    <div id="sk-chase" class="sk-chase">
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                    </div>
+                    <datalist id="musicList"></datalist>
+                </div>
+
+                <div class="home__social">
+                    <span class="home__social-follow">Segue-nos</span>
+
+                    <div class="home__social-links">
+                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== TAB ====================-->
+        <section class="items section container" id="items">
+            <div class="items__container grid">
+
+
+                <section class="showcase">
+                    <!--Não colocar ID, crasha .active-link-->
+
+                    <div class="at-wrap">
+                        <div class="at-overlay">
+
+                        </div>
+                        <div class="at-content">
+                            <div class="at-sidebar">
+                                <div class="at-sidebar-content">
+                                    <div class="at-track-list"></div>
+                                </div>
+                            </div>
+                            <div class="at-viewport" id="at-viewport">
+
+                                <div class="at-main" id="at-main">
+                                    <div id="like" class="like"></div>
+                                </div>
+
+                                <div id="addedLike" class="snackbar"></div>
+                                <div id="removeLike" class="snackbar"></div>
+
+                            </div>
+                        </div>
+                        <div class="at-controls">
+                            <div class="at-controls-left">
+                                <a class="btn at-player-stop disabled">
+                                    <i class="fas fa-step-backward"></i>
+                                </a>
+                                <a class="btn at-player-play-pause disabled">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                                <span class="at-player-progress">0%</span>
+                                <div class="at-song-info">
+                                    <span class="at-song-title"></span> -
+                                    <span class="at-song-artist"></span>
+                                </div>
+                                <div class="at-song-position">00:00 / 00:00</div>
+                            </div>
+                            <div class="at-controls-right">
+                                <a class="btn toggle at-count-in">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </a>
+                                <a class="btn at-metronome">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="btn at-loop">
+                                    <i class="fas fa-retweet"></i>
+                                </a>
+                                <a class="btn at-print">
+                                    <i class="fas fa-print"></i>
+                                </a>
+                                <div class="at-zoom">
+                                    <i class="fas fa-search"></i>
+                                    <select>
+                                        <option value="25">25%</option>
+                                        <option value="50">50%</option>
+                                        <option value="75">75%</option>
+                                        <option value="90">90%</option>
+                                        <option value="100" selected>100%</option>
+                                        <option value="110">110%</option>
+                                        <option value="125">125%</option>
+                                        <option value="150">150%</option>
+                                        <option value="200">200%</option>
+                                    </select>
+                                </div>
+                                <div class="at-layout">
+                                    <select>
+                                        <option value="horizontal">Horizontal</option>
+                                        <option value="page" selected>Page</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <template id="at-track-template">
+                        <div class="at-track">
+                            <div class="at-track-icon">
+                                <i class="fas fa-guitar"></i>
+                            </div>
+                            <div class="at-track-details">
+                                <div class="at-track-name"></div>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="items__data">
+
+                    </div>
+            </div>
+        </section>
+
+        <!--==================== TUNER ====================-->
+        <section class="steps section container" id="tuner">
+
+            <div class="tooltip">O que é isto?
+                <span class="tooltiptext">Um afinador serve para afinar o teu instrumento. Se o ponteiro estiver mais
+                    para a esquerda, tenta apertar a corda. Se o ponteiro estiver mais para a direita, tenta desapertar
+                    a corda. Se o ponteiro estiver no meio, <strong>parabéns!</strong> Tens essa corda afinada.</span>
+            </div>
+            <div class="steps__bg">
+
+
+                <!-- Hidden -->
+                <canvas class="frequency-bars"></canvas>
+                <!-- Hidden -->
+                <div class="meter">
+                    <div class="meter-dot"></div>
+                    <div class="meter-pointer"></div>
+                </div>
+
+                <div class="notes">
+                    <div class="notes-list"></div>
+
+                    <div class="frequency"> <span>Hz</span></div>
+                </div>
+
+                <!-- Hidden-->
+                <div class="a4">A<sub>4</sub> = <span>440</span> Hz</div>
+                <!-- Hidden -->
+
+            </div>
+        </section>
+
+        <!--==================== SOBRE ====================-->
+        <section class="specific section container" id="specifics">
+            <h1 class="section__title-center">
+                O que é o EasyTab?
+            </h1>
+
+            <p class="specific__description">
+                É uma plataforma de ensino musical fácil na configuração e simples na utilização.
+            </p>
+
+            <br><br><br>
+
+            <h1 class="section__title-center">
+                Quais os objetivos?
+            </h1>
+
+            <p class="specific__description">
+                O utilizador poderá escolher a música que pretende aprender, lê-la de forma simplificada e ouvi-la de
+                forma isolada.
+            </p>
+
+            <br><br><br>
+
+            <h1 class="section__title-center">
+                A quem se destina?
+            </h1>
+
+            <p class="specific__description">
+                Este projeto pretende incrementar o acesso ao ensino e teoria musical, ajudando Professores, Estudantes
+                e autodidatas independentemente do nível em que se encontram.
+            </p>
+        </section>
+
+        <!--==================== METRONOME ====================-->
+
+        <section class="steps section container" id="metronome">
+
+            <div class="tooltip">O que é isto?
+                <span class="tooltiptext">Um metronomo ajuda-te a manter o ritmo. Escolhe o batimento adequado ao que
+                    estás a estudar e toca ao mesmo ritmo. Posteriormente tenta compassos diferentes.
+            </div>
+
+            <div class="steps__bg">
+
+
+                <div class="bpm-container">
+                    <h1 style="color: white;">BPM</h1>
+                    <my-number-control id="bpm-control" numberValue="60" minValue="10" maxValue="300">
+                    </my-number-control>
+                </div>
+
+                <div class="division-container">
+                    <div class="division right">
+                        <my-number-control id="division-right-control" numberValue="1" minValue="1" maxValue="7">
+                        </my-number-control>
+                        <div>
+                            <div id="canvas-right" width="12.5em" height="6.25em">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="division left">
+                        <my-number-control id="division-left-control" numberValue="1" minValue="1" maxValue="7">
+                        </my-number-control>
+                        <div>
+                            <div id="canvas-left" width="12.5em" height="6.25em">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="play-container">
+                    <button id="play-button" class="button" style="background-color: transparent">
+                        <i class="material-icons">play_arrow</i>
+                    </button>
+                </div>
+
+                <template id="template-my-number-control">
+                    <div class="control-grid">
+                        <div class="control decrement">
+                            <button class="button" style="background-color: transparent">
+                                <i class="material-icons">remove</i>
+                            </button>
+                        </div>
+                        <div class="value-label">3</div>
+                        <div class="control increment">
+                            <button class="button" style="background-color: transparent">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+        </section>
+
+        <!--==================== CONTACT ====================-->
+        <section class="contact section container" id="contact">
+            <div class="contact__container grid">
+                <div class="contact__box">
+                    <h2 class="section__title">
+                        Inicia sessão para guardar as tuas pautas favoritas, e teres um acesso posterior mais fácil!
+                    </h2>
+                </div>
+
+                <form action="" class="contact__form">
+                    <div class="contact__inputs">
+                        <div class="contact__content">
+                            <input type="email" placeholder=" " class="contact__input" id="emailField">
+                            <label for="" class="contact__label">Email</label>
+                        </div>
+
+                        <div class="contact__content">
+                            <input type="password" placeholder=" " class="contact__input" id="passwordField">
+                            <label for="" class="contact__label">Password</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="button button--flex" id="loginUser">
+                        Login
+                        <i class="ri-arrow-right-up-line button__icon"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!--=============== SCROLL UP ===============-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-fill scrollup__icon"></i>
+    </a>
+
+    <!--=============== SCROLL REVEAL ===============-->
+    <script src="../assets/js/scrollreveal.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="../assets/js/main.js"></script>
+
+    <!--==== APP JS (CONTEM FIREBASE E ALPHATAB) ====-->
+    <script type="module" src="../assets/js/appMainPage.js"></script>
+
+    <!--=============== TUNER JS =============-->
+    <script src="../assets/js/tuner/aubio.js"></script>
+    <script src="../assets/js/tuner/tuner.js"></script>
+    <script src="../assets/js/tuner/meter.js"></script>
+    <script src="../assets/js/tuner/frequency-bars.js"></script>
+    <script src="../assets/js/tuner/notes.js"></script>
+    <script src="../assets/js/tuner/appTuner2.js"></script>
+
+    <!--============== METRONOME JS ===========-->
+    <script type="module" src="../assets/js/metronome/my-number-control-html-element.js"></script>
+    <script type="module" src="../assets/js/metronome/metronome.js"></script>
+    <script type="module" src="../assets/js/metronome/conductor.js"></script>
+    <script type="module" src="../assets/js/metronome/canvas.js"></script>
+    <script type="module" src="../assets/js/metronome/index.js"></script>
+
+    <!--============== ML5 ===============-->
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+</body>
+
+</html>
+
+<!-- EasyTab(PAP) - Luis Agostinho TGPSI-3i - Direitos reservados -->

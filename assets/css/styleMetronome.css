@@ -1,0 +1,58 @@
+.app {
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+@media screen and (min-width: 48em) {
+    .app {
+        width: 48em;
+    }
+}
+
+.bpm-container .control-grid {
+    grid-template-columns: 1fr 3.75em 1fr;
+}
+
+.division-container .control-grid {
+    grid-template-columns: 1fr 2.5em 1fr;
+}
+
+.control-grid {
+    display: grid;
+    align-items: center;
+    column-gap: 0.625em;
+}
+
+.control-grid .value-label {
+    font-size: xx-large;
+    color: white;
+}
+
+.control-grid .control.decrement {
+    text-align: right;
+}
+
+.control-grid .control.increment {
+    text-align: left;
+}
+
+.division-container {
+    margin: 2em 0;
+}
+
+.play-container {
+    margin: 1.125em 0;
+}
+
+.division-container .division {
+    margin: 1em 0.125em;
+    display: inline-block;
+    grid-template-columns: 0.6fr 0.8fr;
+    align-items: center;
+    justify-items: center;
+}

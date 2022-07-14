@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== PAGE CSS ===============-->
+    <link rel="stylesheet" href="../assets/css/styleUserPage.css">
+
+    <!--=============== SWEETALERT2 ================-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>EasyTab - Música para todos</title>
+    <link rel="icon" type="image/x-icon" href="..\assets\img\favicon.ico">
+</head>
+
+<body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="mainPage.html" class="nav__logo">
+                <i class="ri-music-line nav__logo-icon"></i> EasyTab
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#likes" class="nav__link">Likes</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#suggestSong" class="nav__link">Sugestões</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#scales" class="nav__link">Escalas</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#chords" class="nav__link">Acordes</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" id="logoutUser" class="nav__link">Log out</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" id="menuLogin" class="nav__link">Login</a>
+                    </li>
+                </ul>
+
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <div class="nav__btns">
+                <!-- Theme change button -->
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home" id="home">
+            <div class="home__container container grid">
+
+
+                <div class="home__data">
+                    <h1 id="bemVindoText" class="home__title">
+                    </h1>
+                    <p class="specific__description">
+                        Nesta área podes editar os dados da tua conta, bem como ver e/ou remover as músicas que deste
+                        like, adicionar sugestões de músicas e ter acesso à base de dados de acordes.
+                    </p>
+                </div>
+
+                <div class="home__social">
+                    <span class="home__social-follow">Segue-nos</span>
+
+                    <div class="home__social-links">
+                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== TAB ====================-->
+        <section class="items section container" id="items">
+            <div class="container">
+                <div class="column1">
+                    <form id="form" class="form">
+                        <h1>Os teus dados</h1><br>
+                        <div class="form-control">
+                            <a for='username'>O teu Nome</a>
+                            <input type="text" id="username" placeholder="Nome">
+                            <small>Error message</small>
+                        </div>
+                        <div class="form-control">
+                            <a for='email'>O teu E-mail</a>
+                            <input type="text" id="email" placeholder="E-mail">
+                            <small>Error message</small>
+                        </div>
+                        <div class="form-control">
+                            <a for='password'>A tua Password</a>
+                            <input type="password" id="password" placeholder="Password">
+                            <small>Error message</small>
+                        </div>
+                        <div class="form-control">
+                            <a for='password2'>Confirma a tua Password</a>
+                            <input type="password" id="password2" placeholder="Password outra vez">
+                            <small>Error message</small>
+                        </div>
+                        <div id="checkboxDiv">
+                            <input type="checkbox" id="checkbox"> Mostrar as Passwords
+                        </div>
+                        <button type="button" id="saveButton">Guardar</button>
+                        <div id="updateAccount" class="snackbar"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== LIKES ====================-->
+        <section class="specific section container" id="likes">
+            <h1 class="section__title-center">
+                Músicas que deste like:
+            </h1>
+
+
+            <p class="specific__description">
+            <div id="likedDiv">
+
+            </div>
+            <div id="removeLike" class="snackbar"></div>
+            </p>
+
+        </section>
+
+        <!--================= SUGESTÕES ================-->
+        <section class="items section container" id="suggestSong">
+            <div class="container">
+                <div class="column1">
+                    <form id="suggestedSongForm" class="form">
+                        <h2>Sugere uma música que queiras aprender</h2><br>
+                        <div class="form-control">
+                            <a for='suggestedsongname'>O nome da música</a>
+                            <input type="text" id="suggestedSongName" placeholder="Nome da música">
+                            <small>Error message</small>
+                        </div>
+                        <div class="form-control">
+                            <a for='suggestedsongband'>O nome da banda</a>
+                            <input type="text" id="suggestedSongBand" placeholder="Nome da banda">
+                            <small>Error message</small>
+                        </div>
+                        <button type="button" id="suggestedSongButton">Enviar Sugestão</button>
+                        <div id="addedSuggestion" class="snackbar"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!--================= ESCALAS ================-->
+        <section class="steps section container" id="scales">
+            <div class="steps__bg">
+
+                <form id="scalesDiv" class="form">
+                    <h1 style="color: white;">Estuda aqui as tuas escalas.</h1><br>
+                    <p class="specific__description" style="color: white;">
+                        Nesta área tens acesso à localização das notas no braço da guitarra e aos diferentes tipos de
+                        escalas representadas.
+
+                    <div id="scaleinfo" style="color: white;"></div>
+                    <div id="svgScroll" style="position: relative; width: 100%;overflow-x: auto;overflow-y: hidden;">
+                        <svg id="scaleboard" width="775" height="200">
+
+                            <line x1="54" y1="25" x2="54" y2="150" stroke-width="8" stroke="white" />
+                            
+                            <g id="frets" transform="translate(0,25)">
+                                <line x1="105" y1="0" x2="105" y2="125" stroke-width="2" stroke="white" />
+                                <text x="100" y="140" font-family="Verdana" font-size="11px"style="fill: white;">1</text>
+                                <line x1="155" y1="0" x2="155" y2="125" stroke-width="2" stroke="white" />
+                                <circle cx="180" cy="62" r="5" stroke="white" stroke-width="1" fill="white" />
+                                <text x="150" y="140" font-family="Verdana" font-size="11px"style="fill: white;">2</text>
+                                <line x1="205" y1="0" x2="205" y2="125" stroke-width="2" stroke="white" />
+                                <text x="200" y="140" font-family="Verdana" font-size="11px"style="fill: white;">3</text>
+                                <line x1="255" y1="0" x2="255" y2="125" stroke-width="2" stroke="white" />
+                                <circle cx="280" cy="62" r="5" stroke="white" stroke-width="1" fill="white" />
+                                <text x="250" y="140" font-family="Verdana" font-size="11px"style="fill: white;">4</text>
+                                <line x1="305" y1="0" x2="305" y2="125" stroke-width="2" stroke="white" />
+                                <text x="300" y="140" font-family="Verdana" font-size="11px"style="fill: white;">5</text>
+                                <line x1="355" y1="0" x2="355" y2="125" stroke-width="2" stroke="white" />
+                                <circle cx="380" cy="37" r="5" stroke="white" stroke-width="1" fill="white" />
+                                <circle cx="380" cy="87" r="5" stroke="white" stroke-width="1" fill="white" />
+                                <text x="350" y="140" font-family="Verdana" font-size="11px"style="fill: white;">6</text>
+                                <line x1="405" y1="0" x2="405" y2="125" stroke-width="2" stroke="white" />
+                                <text x="400" y="140" font-family="Verdana" font-size="11px"style="fill: white;">7</text>
+                                <line x1="455" y1="0" x2="455" y2="125" stroke-width="2" stroke="white" />
+                                <circle cx="480" cy="62" r="5" stroke="white" stroke-width="1" fill="white" />
+                                <text x="450" y="140" font-family="Verdana" font-size="11px"style="fill: white;">8</text>
+                                <line x1="505" y1="0" x2="505" y2="125" stroke-width="2" stroke="white" />
+                                <text x="500" y="140" font-family="Verdana" font-size="11px"style="fill: white;">9</text>
+                                <line x1="555" y1="0" x2="555" y2="125" stroke-width="2" stroke="white" />
+                                <text x="550" y="140" font-family="Verdana" font-size="11px"style="fill: white;">10</text>
+                                <line x1="605" y1="0" x2="605" y2="125" stroke-width="2" stroke="white" />
+                                <circle cx="630" cy="37" r="5" stroke="white" stroke-width="1" fill="white" />
+                                <circle cx="630" cy="87" r="5" stroke="white" stroke-width="1" fill="white" />
+                                <text x="600" y="140" font-family="Verdana" font-size="11px"style="fill: white;">11</text>
+                                <line x1="655" y1="0" x2="655" y2="125" stroke-width="2" stroke="white" />
+                                <text x="650" y="140" font-family="Verdana" font-size="11px"style="fill: white;">12</text>
+                                <line x1="705" y1="0" x2="705" y2="125" stroke-width="2" stroke="white" />
+                                <text x="700" y="140" font-family="Verdana" font-size="11px"style="fill: white;">13</text>
+                                <line x1="755" y1="0" x2="755" y2="125" stroke-width="2" stroke="white" />
+                                <text x="750" y="140" font-family="Verdana" font-size="11px" style="fill: white;">14</text>
+                            </g>
+
+
+                            <g class="string" id="s1" transform="translate(0,25)">
+                                <line x1="50" y1="0" x2="770" y2="0" stroke-width="1" stroke="white" />
+                            </g>
+
+                            <g class="string" id="s2" transform="translate(0,50)">
+                                <line x1="50" y1="0" x2="770" y2="0" stroke-width="1" stroke="white" />
+                            </g>
+
+                            <g class="string" id="s3" transform="translate(0,75)">
+                                <line x1="50" y1="0" x2="770" y2="0" stroke-width="1" stroke="white" />
+                            </g>
+
+                            <g class="string" id="s4" transform="translate(0,100)">
+                                <line x1="50" y1="0" x2="770" y2="0" stroke-width="1" stroke="white" />
+                            </g>
+
+                            <g class="string" id="s5" transform="translate(0,125)">
+                                <line x1="50" y1="0" x2="770" y2="0" stroke-width="1" stroke="white" />
+                            </g>
+
+                            <g class="string" id="s6" transform="translate(0,150)">
+                                <line x1="50" y1="0" x2="770" y2="0" stroke-width="1" stroke="white" />
+                            </g>
+                        </svg>
+                    </div>
+                    <br>
+                    <div id="scaleselectors">
+
+                        <select id="scaleroot" onchange="putScale();">
+                            <option value="C" selected style="color: black;">C</option>
+                            <option value="C#" style="color: black;">C&#9839;</option>
+                            <option value="Db" style="color: black;">D&#9837;</option>
+                            <option value="D" style="color: black;">D</option>
+                            <option value="D#" style="color: black;">D&#9839;</option>
+                            <option value="Eb" style="color: black;">E&#9837;</option>
+                            <option value="E" style="color: black;">E</option>
+                            <option value="F" style="color: black;">F</option>
+                            <option value="F#" style="color: black;">F&#9839;</option>
+                            <option value="Gb" style="color: black;">G&#9837;</option>
+                            <option value="G#" style="color: black;">G&#9839;</option>
+                            <option value="G" style="color: black;">G</option>
+                            <option value="Ab" style="color: black;">A&#9837;</option>
+                            <option value="A" style="color: black;">A</option>
+                            <option value="A#" style="color: black;">A&#9839;</option>
+                            <option value="Bb" style="color: black;">B&#9837;</option>
+                            <option value="B" style="color: black;">B</option>
+                            <option value="B#" style="color: black;">B&#9839;</option>
+                        </select>
+
+                        <select id="scalemode" onchange="putScale();">
+                            <option value="2,2,1,2,2,2,1" selected style="color: black;">Maior</option>
+                            <option value="2,1,2,2,1,2,2" style="color: black;">Menor</option>
+                            <option value="2,2,1,2,2,2,1" style="color: black;">Pentatônica maior</option>
+                            <option value="2,1,2,2,1,2,2" style="color: black;">Pentatônica menor</option>
+                            <option value="2,1,2,1,1,1,2,2" style="color: black;">Blues</option>
+                            <option value="2,1,2,2,2,1,2" style="color: black;">Dorian</option>
+                            <option value="1,2,2,2,1,2,2" style="color: black;">Phrygian</option>
+                            <option value="2,2,2,1,2,2,1" style="color: black;">Lydian</option>
+                            <option value="2,2,1,2,2,1,2" style="color: black;">Mixolydian</option>
+                            <option value="1,2,2,1,2,2,2" style="color: black;">Locrian</option>
+                        </select>
+
+                        <select id="scaletuning" onchange="putScale();">
+                            <option value="E,A,D,G,B,E" style="color: black;" selected>Standard Tuning</option>
+                            <option value="D,A,D,G,B,E" style="color: black;">Drop D</option>
+                            <option value="D,A,D,F#,A,D" style="color: black;">Open D</option>
+                            <option value="E,B,E,G#,B,E" style="color: black;">Open E</option>
+                            <option value="D,G,D,G,B,D" style="color: black;">Open G</option>
+                            <option value="D,D,D,D,D,D" style="color: black;">Ostrich</option>
+                        </select>
+
+
+                    </div> <!-- Close scaleselectors div -->
+                </form>
+
+            </div>
+        </section>
+        <!--================= ACORDES ================-->
+        <section class="items section container" id="chords">
+            <div class="container">
+                <div class="column1">
+                    <form id="chordsDiv" class="form">
+                        <h1>Base de dados de acordes</h1><br>
+                        <p class="specific__description">
+                            Nesta área tens acesso à base de dados de acordes. Procura o acorde que queres aprender e vê
+                            como é o seu formato.<br><br>
+                            Lembra-te que a letra do acorde tem de ser sempre maiúscula.
+                        <p class="specific__description" style="font-size: small;">
+                            Se precisares, usa o asterisco (*) para veres todos os acordes.
+                            Combina-o com a letra do teu acorde para veres todas as diferentes variações do mesmo.
+                        </p>
+                        </p><br>
+                        <div class="form-control">
+                            <input type="text" id="searchZone" onkeyup="activateSearchEngine()"
+                                placeholder="Escreve aqui o acorde que queres procurar.">
+                            <small>Error message</small>
+                        </div>
+                        <div id="resultsPanel">
+                            <span id="svgContainer"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!--=============== SCROLL UP ===============-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-fill scrollup__icon"></i>
+        </a>
+
+
+        <!--=============== SCROLL REVEAL ===============-->
+        <script src="../assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="../assets/js/main.js"></script>
+
+        <!--==== APP JS (CONTEM FIREBASE E ALPHATAB) ====-->
+        <script type="module" src="../assets/js/appUserPage.js"></script>
+
+        <!--============== ACORDES JS ==================-->
+        <script src="../assets/js/chords/controller.js"></script>
+        <script src="../assets/js/chords/createChordsList.js"></script>
+
+        <!--============== ESCALAS JS ==================-->
+        <script src="../assets/js/scales/d3.min.js"></script>
+        <script src="../assets/js/scales/fretboard.js"></script>
+
+</body>
+
+</html>
+
+<!-- EasyTab(PAP) - Luis Agostinho TGPSI-3i - Direitos reservados -->

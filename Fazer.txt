@@ -1,0 +1,3 @@
+Opcional:
+
+- Quando o login é feito, o scroll dá erro sempre que é utilizado dizendo que não consegue ler a classList => it is what it is
