@@ -28,7 +28,7 @@ class _WebViewAppState extends State<WebViewApp> {
       ),
       body: const WebView(
         javascriptMode: JavascriptMode.unrestricted,
-        initialUrl: 'https://fdbe-2001-818-e2b5-7400-dd95-baed-e130-4d50.ngrok.io',
+        initialUrl: 'https://luisagosti.github.io/',
       ),
     );
   }
